@@ -21,6 +21,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<!-- 加载映射文件 -->
 	<mappers>
-		<mapper resource="mybatis/UserMapper.xml"/>
+		<mapper resource="mybatis/sqlMapMapper.xml"/>
+		<!-- 可以通过包名导入映射器 ：但mapper interface与mapper.xml必须在同一个包下-->
+        <!-- <package name="com.freedom.mybaits.mapper"/> -->
+        <!-- 文件路径引入 -->
+        <mapper resource="com/freedom/mybatis/mapper/UserMapper.xml"/>
 	</mappers>
 </configuration>

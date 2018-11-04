@@ -1,5 +1,6 @@
 package com.freedom.mybatis.domain;
 
+import java.io.Serializable;
 import java.util.Date;
  
 /**
@@ -9,7 +10,12 @@ import java.util.Date;
  * @author: BlackDragon
  * @date: 2018年10月29日
  */
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** 主键id**/
 	private Integer id; 
 	

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freedom.mybatis.domain.UserMapper">
+  <!-- 开启二级缓存 ：针对SqlSessionFactory，同时POJO必须实现Serializable接口
+      （1）所有select会被缓存
+      （2）insert、update、delete会刷新缓存
+      （3）默认使用LRU
+      （4）缓存是可read/write，不是共享的是可以被安全地修改
+  -->
+  <cache eviction="LRU" readOnly="true" flushInterval="100000" size="1024"></cache>
+	<resultMap id="userMap" type="com.freedom.mybatis.domain.User">
+		<result property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<result property="username" column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="birthday" column="birthday" javaType="java.sql.Date" jdbcType="DATE" />
+	</resultMap>
+	<!-- 使用POJO映射结果集 -->
+	<select id="findByUserId" parameterType="int" resultType="com.freedom.mybatis.domain.User">	
+		select * from user where id = #{id}
+	</select>
+	
+	<!-- 使用resultMap映射结果集 -->
+	<select id="findByUserName" parameterType="string" resultMap="userMap">
+		select * from user where username = #{username}
+	</select>
+</mapper>
